@@ -7,7 +7,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
 
-
 public class CryptoCurrencyWatcherTestApplication {
 
     public static void main(String[] args) {
