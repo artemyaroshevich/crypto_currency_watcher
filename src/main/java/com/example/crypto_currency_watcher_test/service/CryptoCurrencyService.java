@@ -1,5 +1,6 @@
 package com.example.crypto_currency_watcher_test.service;
 
+
 import com.example.crypto_currency_watcher_test.entity.CryptoCurrency;
 import com.example.crypto_currency_watcher_test.repository.CryptoCurrencyRepository;
 import org.hibernate.ObjectNotFoundException;
@@ -14,19 +15,21 @@ import java.util.Optional;
 public class CryptoCurrencyService {
 
     @Autowired
-    private CryptoCurrencyRepository cryptoRepository;
+    private CryptoCurrencyRepository cryptoStorage;
 
-    public boolean save(CryptoCurrency cryptoCurrency) throws ObjectNotFoundException {
+
+
+    public boolean saveCryprto(CryptoCurrency map, CryptoCurrency cryptoCurrency) throws ObjectNotFoundException {
         if (findById(cryptoCurrency.getId()) == null) {
             return false;
         }
-        cryptoRepository.save(cryptoRepository);
+        cryptoStorage.save(cryptoStorage);
         return true;
     }
 
     public CryptoCurrencyRepository findById(Long id) throws ObjectNotFoundException {
         CryptoCurrencyRepository cryptoCurrency;
-        Optional<CryptoCurrencyRepository> cryptoCurrencyOptional = cryptoRepository.findById(id);
+        Optional<CryptoCurrencyRepository> cryptoCurrencyOptional = cryptoStorage.findById(id);
         if (cryptoCurrencyOptional.isPresent()) {
             cryptoCurrency = cryptoCurrencyOptional.get();
         } else {
@@ -36,14 +39,16 @@ public class CryptoCurrencyService {
     }
 
     public List<CryptoCurrencyRepository> findAll() {
-        return cryptoRepository.findAll();
+        return cryptoStorage.findAll();
 
     }
+
+
 @Transactional
     public boolean update(CryptoCurrency cryptoCurrency) {
-        CryptoCurrency updateCrypto = (CryptoCurrency) cryptoRepository.getById(cryptoCurrency.getId());
+        CryptoCurrency updateCrypto = (CryptoCurrency) cryptoStorage.getById(cryptoCurrency.getId());
         if (updateCrypto == null) {
-            save(cryptoCurrency);
+            saveCryprto(mapper.map(symbol, CryptoCurrency.class), cryptoCurrency);
         }
         updateCrypto.setId(cryptoCurrency.getId());
         updateCrypto.setSymbol(cryptoCurrency.getSymbol());
