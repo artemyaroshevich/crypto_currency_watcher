@@ -36,7 +36,7 @@ public class CryptoCurrencyController {
             userService.save(mapper.map(username,User.class), username);
             return new ResponseEntity<>(HttpStatus.OK);
             cryptoCurrencyService.saveCryprto(mapper.map(symbol,CryptoCurrency.class),symbol);
-            return new ResponseEntity<>(HttpStatus.OK)
+            return new ResponseEntity<>(HttpStatus.OK);
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
